@@ -1,5 +1,5 @@
 body {
-  margin: 10px;
+  margin: 0px;
 }
 
 .wrapper {
@@ -11,20 +11,26 @@ body {
 }
 
 .wrapper div {
-  flex-basis: 20%;
+  flex-basis: 15%;
   background-color: #444;
   color: #fff;
   font-size: 150%;
-  min-width: 400px;
-  border: 10px solid white;
+  width: 20%;
+  border: 0px solid white;
+  margin-bottom: -40px;
 }
 
 .wrapper p {
+  position: relative;
+  top: -40px;
+  left: 5px;
   padding: 4px 0 0;
   margin: 0;
-  text-align: center;
   font-family: sans-serif;
   text-transform: uppercase;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+}
+
+#map {
+  height: 1000px;
 }
