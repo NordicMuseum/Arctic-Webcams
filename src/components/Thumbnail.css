@@ -1,0 +1,9 @@
+.Thumbnail {
+  width: 20vw;
+  height: 20vh;
+  color: white;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

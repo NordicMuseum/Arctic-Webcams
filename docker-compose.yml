@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  node:
+    image: "node:11.1.0"
+    working_dir: "/app"
+    volumes:
+      - ".:/app"
+    ports:
+      - "3000:3000"
+    environment:
+      - RAPIDAPI_KEY=qJgwGM5eHemshS7vNOgjqyvOrR6lp1nM3cNjsnGHlCIDvYO3X5
+    command: yarn start
