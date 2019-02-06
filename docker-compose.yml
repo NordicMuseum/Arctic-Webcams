@@ -8,6 +8,4 @@ services:
       - ".:/app"
     ports:
       - "3000:3000"
-    environment:
-      - RAPIDAPI_KEY=qJgwGM5eHemshS7vNOgjqyvOrR6lp1nM3cNjsnGHlCIDvYO3X5
     command: yarn start
