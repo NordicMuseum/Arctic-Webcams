@@ -3,6 +3,7 @@ import ky from 'ky'
 import './App.css'
 import Modal from 'react-modal'
 import Thumbnail from './Thumbnail'
+import { flag } from 'country-code-emoji'
 
 Modal.setAppElement(document.getElementById('root'))
 
@@ -84,8 +85,8 @@ class App extends Component {
         <Modal className='Modal' overlayClassName='Overlay' isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal.bind(this)}>
           {this.state.selectedWebcamId &&
             <div>
-              <h2>{webcam.title}</h2>
-              <img src={webcam.image} alt={webcam.title} />
+              <h2>{flag(webcam.location.country_code)} {webcam.location.city}</h2>
+              <img src={webcam.image} alt={webcam.location.city} />
             </div>
           }
         </Modal>
