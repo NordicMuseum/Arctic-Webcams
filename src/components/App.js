@@ -48,6 +48,8 @@ class App extends Component {
 
     const byIdDESC = (a, b) => Number(a.id) - Number(b.id)
 
+    console.log(webcams[0].player);
+
     this.setState({
       webcams: webcams.sort(byIdDESC)
     })
@@ -76,6 +78,8 @@ class App extends Component {
       return id === this.state.selectedWebcamId
     })
 
+    //TODO: can we autoplay without opening a popup window?
+
     return (
       <div className='App'>
         <section className='Webcams'>
@@ -86,7 +90,7 @@ class App extends Component {
           {this.state.selectedWebcamId &&
             <div>
               <h2>{flag(webcam.location.country_code)} {webcam.location.city}</h2>
-              <img src={webcam.image} alt={webcam.location.city} />
+              <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
             </div>
           }
         </Modal>
