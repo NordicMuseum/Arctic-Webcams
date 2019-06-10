@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { flag } from 'country-code-emoji'
 import './Thumbnail.css'
 
 class Thumbnail extends Component {
@@ -8,7 +9,7 @@ class Thumbnail extends Component {
     }
 
     return (
-      <div className='Thumbnail' onClick={this.props.onClick} style={style} />
+      <div className='Thumbnail' onClick={this.props.onClick} style={style}>{flag(this.props.location.country_code)} {this.props.location.city}</div>
     )
   }
 }
