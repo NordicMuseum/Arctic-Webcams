@@ -9,7 +9,7 @@ class Thumbnail extends Component {
     }
 
     return (
-      <div className='Thumbnail' onClick={this.props.onClick} style={style}>{flag(this.props.location.country_code)} {this.props.location.city}</div>
+      <div className='Thumbnail' onClick={this.props.onClick} style={style}><h2>{flag(this.props.location.country_code)} {this.props.location.city}</h2></div>
     )
   }
 }

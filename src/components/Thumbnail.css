@@ -4,7 +4,7 @@
   color: white;
   padding: 1em;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
   font-family: 'EksellDisplayWebMedium';
 }

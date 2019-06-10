@@ -31,3 +31,19 @@ html, body {
   font-weight: normal;
   font-style: normal;
 }
+
+h1 {
+  font-size: 92px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 36px;
+  text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.8);
+  margin: 0;
+}
+
+p {
+  font-size: 48px;
+  margin: 12px;
+}

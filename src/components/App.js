@@ -89,7 +89,8 @@ class App extends Component {
         <Modal className='Modal' overlayClassName='Overlay' isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal.bind(this)}>
           {this.state.selectedWebcamId &&
             <div>
-              <h2>{flag(webcam.location.country_code)} {webcam.location.city}</h2>
+              <h1>{webcam.location.city}</h1>
+              <p>{flag(webcam.location.country_code)} {webcam.location.country}</p>
               <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
             </div>
           }
