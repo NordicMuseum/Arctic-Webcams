@@ -13,8 +13,9 @@ class App extends Component {
 
     this.state = {
       modalIsOpen: false,
-      selectedWebcamId: 0,
-      webcams: []
+      selectedWebcamId: null,
+      webcams: [],
+      selectedTemperature: ''
     }
 
     const update = () => {
@@ -43,33 +44,58 @@ class App extends Component {
       title,
       player,
       image: image.current.preview,
-      location
+      location,
+      temperature: ''
     }))
 
     const byIdDESC = (a, b) => Number(a.id) - Number(b.id)
-
-    console.log(webcams[0].player);
 
     this.setState({
       webcams: webcams.sort(byIdDESC)
     })
   }
 
+  async fetchTemperatures (selectedId) {
+    console.log('fetchTemperatures ' + selectedId)
+
+    const webcam = this.state.webcams.find(({ id }) => {
+      return id === selectedId
+    })
+
+    console.log('fetchTemperatures ' + webcam.id)
+
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + webcam.location.latitude + '&lon=' + webcam.location.longitude + '&appid=8a69f1003314e61a61759aeeda535d22'
+
+    const result = await ky(url).json()
+
+    const temperature = Math.round(result.main.temp-273.15, 0) + ' °C'
+
+    this.setState({
+      selectedTemperature: temperature
+    })
+  }
+
   openModal (id) {
+
     this.setState({
       modalIsOpen: true,
       selectedWebcamId: id
     })
+
+    this.fetchTemperatures(id)
   }
 
   closeModal () {
     this.setState({
       modalIsOpen: false,
-      selectedWebcamId: undefined
+      selectedWebcamId: null,
+      selectedTemperature: ''
     })
   }
 
   render () {
+    console.log(this.state)
+
     const webcams = this.state.webcams.map((props, i) => (
       <Thumbnail key={i} {...props} onClick={this.openModal.bind(this, props.id)} />
     ))
@@ -91,6 +117,7 @@ class App extends Component {
             <div>
               <h1>{webcam.location.city}</h1>
               <p>{flag(webcam.location.country_code)} {webcam.location.country}</p>
+              <p>{this.state.selectedTemperature}&nbsp;</p>
               <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
             </div>
           }

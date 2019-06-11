@@ -43,6 +43,10 @@ h2 {
   margin: 0;
 }
 
+.temperature {
+  font-size: 18px;
+}
+
 p {
   font-size: 48px;
   margin: 12px;
