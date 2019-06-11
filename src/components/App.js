@@ -48,7 +48,7 @@ class App extends Component {
       temperature: ''
     }))
 
-    const byIdDESC = (a, b) => Number(a.id) - Number(b.id)
+    const byIdDESC = (a, b) => Number(a.location.longitude) - Number(b.location.longitude)
 
     this.setState({
       webcams: webcams.sort(byIdDESC)
