@@ -24,7 +24,7 @@ class App extends Component {
 
     this.fetchWebcams()
 
-    window.setInterval(update, 36000)
+    window.setInterval(update, 60000)
   }
 
   async fetchWebcams () {
