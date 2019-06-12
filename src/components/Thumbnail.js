@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { flag } from 'country-code-emoji'
+import Moment from 'react-moment'
+import 'moment-timezone'
 import './Thumbnail.css'
 
 class Thumbnail extends Component {
@@ -25,7 +27,7 @@ class Thumbnail extends Component {
     }
 
     return (
-      <div className='Thumbnail' onClick={this.props.onClick} style={style}><h2>{flag(this.props.location.country_code)} {this.props.location.city} <span className='temperature'>{this.state.temperature}</span></h2></div>
+      <div className='Thumbnail' onClick={this.props.onClick} style={style}><h2>{flag(this.props.location.country_code)} {this.props.location.city}</h2><p>🕑 <Moment format="HH:mm" tz={this.props.location.timezone} /> 🌡 {this.state.temperature}</p></div>
     )
   }
 }

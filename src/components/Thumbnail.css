@@ -4,7 +4,12 @@
   color: white;
   padding: 1em;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
   font-family: 'EksellDisplayWebMedium';
+}
+
+.Thumbnail p {
+	font-size: 18px;
 }
