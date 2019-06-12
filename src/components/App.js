@@ -121,6 +121,7 @@ class App extends Component {
               <p>{webcam.id}{flag(webcam.location.country_code)} {webcam.location.country}</p>
               <p>Tid/time <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
               <p>Temperatur/temperature {this.state.selectedTemperature}&nbsp;</p>
+              <p className='finePrint'>Temperature provided by OpenWeatherMap, CC BY-SA 4.0</p>
               <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
             </div>
           }
