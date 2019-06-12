@@ -106,6 +106,8 @@ class App extends Component {
       return id === this.state.selectedWebcamId
     })
 
+    const imageURL = 'images/' + this.state.selectedWebcamId + '.png'
+
     //TODO: can we autoplay without opening a popup window?
 
     return (
@@ -119,6 +121,7 @@ class App extends Component {
             <div>
               <h1>{webcam.location.city}</h1>
               <p>{webcam.id}{flag(webcam.location.country_code)} {webcam.location.country}</p>
+              <p><img src={imageURL} alt={webcam.location.city} width='400px' height='400px' /></p>
               <p>Tid/time <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
               <p>Temperatur/temperature {this.state.selectedTemperature}&nbsp;</p>
               <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
