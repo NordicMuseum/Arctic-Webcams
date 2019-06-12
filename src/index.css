@@ -38,7 +38,7 @@ h1 {
 }
 
 h2 {
-  font-size: 36px;
+  font-size: 32px;
   text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.8);
   margin: 0;
 }
@@ -50,4 +50,8 @@ h2 {
 p {
   font-size: 48px;
   margin: 12px;
+}
+
+.finePrint {
+  font-size: 18px;
 }
