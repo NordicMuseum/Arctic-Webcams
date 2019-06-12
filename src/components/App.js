@@ -4,6 +4,8 @@ import './App.css'
 import Modal from 'react-modal'
 import Thumbnail from './Thumbnail'
 import { flag } from 'country-code-emoji'
+import Moment from 'react-moment'
+import 'moment-timezone'
 
 Modal.setAppElement(document.getElementById('root'))
 
@@ -116,9 +118,9 @@ class App extends Component {
           {this.state.selectedWebcamId &&
             <div>
               <h1>{webcam.location.city}</h1>
-              <p>{flag(webcam.location.country_code)} {webcam.location.country}</p>
-              <p>{this.state.selectedTemperature}&nbsp;</p>
-              <p className='finePrint'>Temperature provided by OpenWeatherMap, CC BY-SA 4.0</p>
+              <p>{webcam.id}{flag(webcam.location.country_code)} {webcam.location.country}</p>
+              <p>Tid/time <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
+              <p>Temperatur/temperature {this.state.selectedTemperature}&nbsp;</p>
               <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
             </div>
           }
