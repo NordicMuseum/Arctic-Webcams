@@ -14,7 +14,7 @@ class Thumbnail extends Component {
   }
 
   componentDidMount() {
-  	const thumbnailApiEndpoint = 'https://api.openweathermap.org/data/2.5/weather?lat=' + this.props.location.latitude + '&lon=' + this.props.location.longitude + '&appid=8a69f1003314e61a61759aeeda535d22'
+  	const thumbnailApiEndpoint = 'https://api.openweathermap.org/data/2.5/weather?lat=' + this.props.location.latitude + '&lon=' + this.props.location.longitude + '&appid=' + process.env.REACT_APP_OPENWEATHERMAP_API_KEY
 
   	fetch(thumbnailApiEndpoint)
       .then(response => response.json())

@@ -11,6 +11,8 @@ Modal.setAppElement(document.getElementById('root'))
 
 class App extends Component {
   constructor (props) {
+    console.log(process.env.REACT_APP_OPENWEATHERMAP_API_KEY)
+
     super(props)
 
     this.state = {
@@ -66,7 +68,7 @@ class App extends Component {
 
     console.log('fetchTemperatures ' + webcam.id)
 
-    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + webcam.location.latitude + '&lon=' + webcam.location.longitude + '&appid=8a69f1003314e61a61759aeeda535d22'
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + webcam.location.latitude + '&lon=' + webcam.location.longitude + '&appid=' + process.env.REACT_APP_OPENWEATHERMAP_API_KEY
 
     const result = await ky(url).json()
 
