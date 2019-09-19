@@ -23,7 +23,21 @@
   background-color: white;
   padding: 1em;
   text-align: center;
-  font-family: 'EksellDisplayWebMedium'
+  font-family: 'EksellDisplayWebMedium';
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ModalContainer {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ModalContent {
+  flex-grow: 1;
 }
 
 .Webcams {

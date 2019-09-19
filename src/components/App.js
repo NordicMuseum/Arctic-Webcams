@@ -120,14 +120,18 @@ class App extends Component {
 
         <Modal className='Modal' overlayClassName='Overlay' isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal.bind(this)}>
           {this.state.selectedWebcamId &&
-            <div>
-              <h1>{webcam.location.city}</h1>
-              <p>{webcam.id}{flag(webcam.location.country_code)} {webcam.location.country}</p>
-              <p><img src={imageURL} alt={webcam.location.city} width='400px' height='400px' /></p>
-              <p>Tid/time <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
-              <p>Temperatur/temperature {this.state.selectedTemperature}&nbsp;</p>
+            <div className='ModalContainer'>
+            <div className='ModalContent'>
+              <h1>{flag(webcam.location.country_code)} {webcam.location.city}</h1>
+              <p><img src={webcam.image} alt={webcam.location.city} width='400px' height='224px' /></p>
+              <p><span className="dataType">Plats/Place:</span> {webcam.location.country}</p>
+              <p><span className="dataType">Aktuell tid/Current Time:</span> <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
+              <p><span className="dataType">Aktuell temperatur/Current Temperature:</span> {this.state.selectedTemperature}</p>
               <p className='finePrint'>Temperature provided by OpenWeatherMap, CC BY-SA 4.0</p>
-              <iframe title="Player" src={webcam.player.year.embed + '&autoplay=1'}></iframe>
+            </div>
+            <div className='ModalContent'>
+              <p><img src={imageURL} alt={webcam.location.city} width='400px' height='400px' /></p>
+            </div>
             </div>
           }
         </Modal>
