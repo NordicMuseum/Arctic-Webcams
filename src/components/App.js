@@ -43,7 +43,6 @@ class App extends Component {
       }
     } = await ky(url).json()
 
-    const webcams = wc.map(({ id, image, title, player, location }) => ({
     const webcams = wc.map(({ id, image, title, player, location, url }) => ({
       id,
       title,
