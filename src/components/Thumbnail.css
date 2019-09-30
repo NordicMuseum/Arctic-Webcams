@@ -1,9 +1,9 @@
 .Thumbnail {
-  width: 20vw;
-  height: 20vh;
+  display: flex;
+  width: 300px;
+  height: 168px;
   color: white;
   padding: 1em;
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -12,4 +12,39 @@
 
 .Thumbnail p {
 	font-size: 18px;
+}
+
+.Thumbnail h2 {
+  font-size: 28px;
+}
+
+@media (min-width: 360px) {
+  .Thumbnail {
+    width: 360px;
+    height: 202px;
+  }
+
+  .Thumbnail h2 {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 400px) {
+  .Thumbnail {
+    width: 400px;
+    height: 224px;
+  }
+
+  .Thumbnail h2 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .Thumbnail {
+    width: 20vw;
+    height: 20vh;
+  }
+
+
 }

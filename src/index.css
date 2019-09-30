@@ -3,8 +3,9 @@
 }
 
 html, body {
-  margin: 0;
-  overflow: hidden;
+  margin: 0 auto;
+  overflow: auto;
+  font-weight: normal;
 }
 
 /* Webfonts: Copyright © Letters From Sweden. All rights reserved. To obtain a license, please see: https://lettersfromsweden.se */
@@ -33,8 +34,9 @@ html, body {
 }
 
 h1 {
-  font-size: 92px;
+  font-size: 22px;
   margin: 0;
+  font-weight: normal;
 }
 
 h2 {
@@ -43,19 +45,75 @@ h2 {
   margin: 0;
 }
 
-.temperature {
-  font-size: 18px;
-}
-
 p {
-  font-size: 32px;
-  margin: 8px;
+  font-size: 22px;
+  margin: 7px;
 }
 
-.finePrint {
-  font-size: 18px;
+.FinePrint {
+  font-size: 11px;
+  font-family: 'GillSansLight';
 }
 
-.dataType {
-  color: #666;
+.DataType {
+  display: none;
+}
+
+@media (min-width: 360px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .FinePrint {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1000px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .FinePrint {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  .FinePrint {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1700px) {
+  html, body {
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 60px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 36px;
+    margin: 8px;
+  }
+
+  .FinePrint {
+    font-size: 24px;
+  }
+
 }

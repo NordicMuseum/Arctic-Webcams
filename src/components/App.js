@@ -44,11 +44,13 @@ class App extends Component {
     } = await ky(url).json()
 
     const webcams = wc.map(({ id, image, title, player, location }) => ({
+    const webcams = wc.map(({ id, image, title, player, location, url }) => ({
       id,
       title,
       player,
       image: image.current.preview,
       location,
+      url: url.current.desktop,
       temperature: ''
     }))
 
@@ -117,20 +119,25 @@ class App extends Component {
         <section className='Webcams'>
           {webcams}
         </section>
+        <section className='Courtesy'>
+          <p>Webcams provided by <a href="http://webcams.travel/api">webcams.travel</a></p>
+        </section>
 
         <Modal className='Modal' overlayClassName='Overlay' isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal.bind(this)}>
           {this.state.selectedWebcamId &&
             <div className='ModalContainer'>
             <div className='ModalContent'>
-              <h1>{flag(webcam.location.country_code)} {webcam.location.city}</h1>
-              <p><img src={webcam.image} alt={webcam.location.city} width='400px' height='224px' /></p>
-              <p><span className="dataType">Plats/Place:</span> {webcam.location.country}</p>
-              <p><span className="dataType">Aktuell tid/Current Time:</span> <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
-              <p><span className="dataType">Aktuell temperatur/Current Temperature:</span> {this.state.selectedTemperature}</p>
-              <p className='finePrint'>Temperature provided by OpenWeatherMap, CC BY-SA 4.0</p>
+              <button className="ModalCloseButton" onClick={this.closeModal.bind(this)}>X</button>
+              <p><a href={webcam.url}><img className="ModalWebcamImage" src={webcam.image} alt={webcam.location.city}/></a></p>
+              <h1>📍 {webcam.location.city}</h1>
+              <p><span className="DataType">Plats/Place:</span>{flag(webcam.location.country_code)} {webcam.location.country}</p>
+              <p className="Time"><span className="DataType">Aktuell tid/Current Time:</span>🕑 <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
+              <p className="Temperature"><span className="DataType">Aktuell temperatur/Current Temperature:</span>🌡 {this.state.selectedTemperature}</p>
             </div>
             <div className='ModalContent'>
-              <p><img src={imageURL} alt={webcam.location.city} width='400px' height='400px' /></p>
+              <p><img className='ModalMapImage' src={imageURL} alt={webcam.location.city}/></p>
+              <p className='FinePrint'>Temperature provided by OpenWeatherMap, CC BY-SA 4.0</p>
+              <p className='FinePrint'>Webcams provided by <a href="http://webcams.travel/api">webcams.travel</a></p>
             </div>
             </div>
           }
