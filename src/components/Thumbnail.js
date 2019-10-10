@@ -11,6 +11,13 @@ class Thumbnail extends Component {
   	this.state = {
   		temperature: null
   	}
+
+    const update = () => {
+      console.log('updating temperatures for thumbnails')
+      this.componentDidMount()
+    }
+
+    window.setInterval(update, 60000)
   }
 
   componentDidMount() {

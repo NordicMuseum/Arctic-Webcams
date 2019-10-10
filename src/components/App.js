@@ -11,7 +11,6 @@ Modal.setAppElement(document.getElementById('root'))
 
 class App extends Component {
   constructor (props) {
-    console.log(process.env.REACT_APP_OPENWEATHERMAP_API_KEY)
 
     super(props)
 
@@ -23,31 +22,33 @@ class App extends Component {
     }
 
     const update = () => {
+      console.log('updating')
       this.fetchWebcams()
     }
 
     this.fetchWebcams()
 
-    window.setInterval(update, 60)
+    window.setInterval(update, 60000)
   }
 
   async fetchWebcams () {
+
     const ids = require('../config')['webcamIds'].join(',')
 
-    const url =
-      `/api/webcams/list/webcam=${ids}/limit=30$?lang=en&show=webcams:image,player,location`
+    const webcamUrl =
+      `https://webcamstravel.p.rapidapi.com/webcams/list/webcam=${ids}/limit=30?lang=en&show=webcams:image,player,location,url`
 
     const {
       result: {
         webcams: wc
       }
-    } = await ky(url).json()
+    } = await ky(webcamUrl, {headers: {'X-RapidAPI-Key': 'qEYDM6Y7AhmshtVoFbEnLYglkIdip1GSknyjsngPAQjpDvDKL5'}}).json()
 
     const webcams = wc.map(({ id, image, title, player, location, url }) => ({
       id,
       title,
       player,
-      image: image.current.preview,
+      image: image.current.preview + '?time=' + Date.now(),
       location,
       url: url.current.desktop,
       temperature: ''
@@ -58,6 +59,8 @@ class App extends Component {
     this.setState({
       webcams: webcams.sort(byIdDESC)
     })
+    
+    console.log(this.state.webcams)
   }
 
   async fetchTemperatures (selectedId) {
@@ -99,7 +102,6 @@ class App extends Component {
   }
 
   render () {
-    console.log(this.state)
 
     const webcams = this.state.webcams.map((props, i) => (
       <Thumbnail key={i} {...props} onClick={this.openModal.bind(this, props.id)} />
