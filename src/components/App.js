@@ -22,7 +22,6 @@ class App extends Component {
     }
 
     const update = () => {
-      console.log('updating')
       this.fetchWebcams()
     }
 
@@ -59,8 +58,6 @@ class App extends Component {
     this.setState({
       webcams: webcams.sort(byIdDESC)
     })
-    
-    console.log(this.state.webcams)
   }
 
   async fetchTemperatures (selectedId) {

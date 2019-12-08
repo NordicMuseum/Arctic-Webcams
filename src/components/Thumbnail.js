@@ -13,7 +13,6 @@ class Thumbnail extends Component {
   	}
 
     const update = () => {
-      console.log('updating temperatures for thumbnails')
       this.componentDidMount()
     }
 
