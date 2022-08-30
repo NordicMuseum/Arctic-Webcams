@@ -8,7 +8,7 @@
     "country-code-emoji": "^0.0.1",
     "http-proxy-middleware": "^0.19.1",
     "ky": "^0.6.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-modal": "^3.8.1",
