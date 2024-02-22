@@ -35,21 +35,19 @@ class App extends Component {
     const ids = require('../config')['webcamIds'].join(',')
 
     const webcamUrl =
-      `https://webcamstravel.p.rapidapi.com/webcams/list/webcam=${ids}/limit=30?lang=en&show=webcams:image,player,location,url`
+      `https://api.windy.com/webcams/api/v3/webcams?lang=en&limit=30&include=images,player,location,urls&webcamIds=${ids}`
 
     const {
-      result: {
-        webcams: wc
-      }
-    } = await ky(webcamUrl, {headers: {'X-RapidAPI-Key': 'qEYDM6Y7AhmshtVoFbEnLYglkIdip1GSknyjsngPAQjpDvDKL5'}}).json()
+      webcams: wc
+    } = await ky(webcamUrl, {headers: {'x-windy-api-key': 'b23CWoHW3lKIlfQOQBGkv8yVJPx1so46'}}).json()
 
-    const webcams = wc.map(({ id, image, title, player, location, url }) => ({
-      id,
+    const webcams = wc.map(({ webcamId, images, title, player, location, urls }) => ({
+      webcamId,
       title,
       player,
-      image: image.current.preview + '?time=' + Date.now(),
+      images: images.current.preview,
       location,
-      url: url.current.desktop,
+      urls: urls.detail,
       temperature: ''
     }))
 
@@ -60,14 +58,14 @@ class App extends Component {
     })
   }
 
-  async fetchTemperatures (selectedId) {
-    console.log('fetchTemperatures ' + selectedId)
+  async fetchTemperatures (selectedWebcamId) {
+    console.log('fetchTemperatures ' + selectedWebcamId)
 
-    const webcam = this.state.webcams.find(({ id }) => {
-      return id === selectedId
+    const webcam = this.state.webcams.find(({ webcamId }) => {
+      return webcamId === selectedWebcamId
     })
 
-    console.log('fetchTemperatures ' + webcam.id)
+    console.log('fetchTemperatures ' + webcam.webcamId)
 
     const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + webcam.location.latitude + '&lon=' + webcam.location.longitude + '&appid=' + process.env.REACT_APP_OPENWEATHERMAP_API_KEY
 
@@ -80,14 +78,14 @@ class App extends Component {
     })
   }
 
-  openModal (id) {
+  openModal (webcamId) {
 
     this.setState({
       modalIsOpen: true,
-      selectedWebcamId: id
+      selectedWebcamId: webcamId
     })
 
-    this.fetchTemperatures(id)
+    this.fetchTemperatures(webcamId)
   }
 
   closeModal () {
@@ -101,11 +99,11 @@ class App extends Component {
   render () {
 
     const webcams = this.state.webcams.map((props, i) => (
-      <Thumbnail key={i} {...props} onClick={this.openModal.bind(this, props.id)} />
+      <Thumbnail key={i} {...props} onClick={this.openModal.bind(this, props.webcamId)} />
     ))
 
-    const webcam = this.state.webcams.find(({ id }) => {
-      return id === this.state.selectedWebcamId
+    const webcam = this.state.webcams.find(({ webcamId }) => {
+      return webcamId === this.state.selectedWebcamId
     })
 
     const imageURL = 'images/' + this.state.selectedWebcamId + '.png'
@@ -118,7 +116,7 @@ class App extends Component {
           {webcams}
         </section>
         <section className='Courtesy'>
-          <p>Webcams provided by <a href="http://webcams.travel/api">webcams.travel</a></p>
+          <p>Webcams provided by <a href="https://api.windy.com/webcams">Windy.com</a></p>
         </section>
 
         <Modal className='Modal' overlayClassName='Overlay' isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal.bind(this)}>
@@ -126,16 +124,15 @@ class App extends Component {
             <div className='ModalContainer'>
             <div className='ModalContent'>
               <button className="ModalCloseButton" onClick={this.closeModal.bind(this)}>X</button>
-              <p><a href={webcam.url}><img className="ModalWebcamImage" src={webcam.image} alt={webcam.location.city}/></a></p>
-              <h1>📍 {webcam.location.city}</h1>
+              <p><a href={webcam.urls}><img className="ModalWebcamImage" src={webcam.images} alt={webcam.location.city}/></a></p>
+              <h1><span role="img" aria-label="pin">📍</span> {webcam.location.city}</h1>
               <p><span className="DataType">Plats/Place:</span>{flag(webcam.location.country_code)} {webcam.location.country}</p>
-              <p className="Time"><span className="DataType">Aktuell tid/Current Time:</span>🕑 <Moment format="HH:mm" tz={webcam.location.timezone} /></p>
               <p className="Temperature"><span className="DataType">Aktuell temperatur/Current Temperature:</span>🌡 {this.state.selectedTemperature}</p>
             </div>
             <div className='ModalContent'>
               <p><img className='ModalMapImage' src={imageURL} alt={webcam.location.city}/></p>
               <p className='FinePrint'>Temperature provided by OpenWeatherMap, CC BY-SA 4.0</p>
-              <p className='FinePrint'>Webcams provided by <a href="http://webcams.travel/api">webcams.travel</a></p>
+              <p className='FinePrint'>Webcams provided by <a href="https://api.windy.com/webcams">Windy.com</a></p>
             </div>
             </div>
           }

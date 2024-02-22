@@ -23,7 +23,7 @@
   background-color: white;
   padding: 0;
   text-align: center;
-  font-family: 'EksellDisplayWebMedium';
+  font-family: 'EksellDisplayWebMedium', serif;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -51,7 +51,7 @@
   border-color: #000;
   background-color: #ddd;
   font-size: 28px;
-  font-family: 'GillSansLight';
+  font-family: 'GillSansLight', sans-serif;
   padding-top: 7px;
   cursor: pointer;
 }
@@ -81,7 +81,7 @@
 .Courtesy p {
   text-align: center;
   font-size: 14px;
-  font-family: 'GillSansLight';
+  font-family: 'GillSansLight', sans-serif;
 }
 
 .Temperature, .Time {

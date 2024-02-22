@@ -29,16 +29,16 @@ class Thumbnail extends Component {
 
   render () {
     const style = {
-      backgroundImage: `url(${this.props.image})`
+      backgroundImage: `url(${this.props.images})`
     }
-    if(!this.props.location.country_code) {
+    if(!this.props.location.country_code) {
       this.props.location.country_code = 'GL'
       this.props.location.country = 'Greenland'
     }
     
 
     return (
-      <div className='Thumbnail' onClick={this.props.onClick} style={style}><h2>{flag(this.props.location.country_code)} {this.props.location.city}</h2><p>🕑 <Moment format="HH:mm" tz={this.props.location.timezone} /> 🌡 {this.state.temperature}</p></div>
+      <div className='Thumbnail' onClick={this.props.onClick} style={style}><h2>{flag(this.props.location.country_code)} {this.props.location.city}</h2><p>🌡 {this.state.temperature}</p></div>
     )
   }
 }
